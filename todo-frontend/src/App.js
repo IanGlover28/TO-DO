@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import TodoList from './components/TodoList';
+import TodoList from './components/Todolist';
 import CreateTodo from './components/CreateTodo';
 import EditTodo from './components/EditTodo';
 import './index.css';

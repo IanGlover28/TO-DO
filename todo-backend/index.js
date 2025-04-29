@@ -12,9 +12,9 @@ const PORT = process.env.PORT || 5050;
 // CORS Middleware configuration
 
 app.use(cors({
-  origin: 'http://localhost:3000', // Allow only frontend URL (adjust if necessary)
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
-  credentials: true, // Allows cookies and other credentials to be sent
+  origin: 'http://localhost:3000', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  credentials: true, 
 }));
 
 // Middleware to parse JSON
@@ -55,22 +55,4 @@ process.on('SIGINT', async () => {
 });
 
 
-// const express = require('express');
-// const cors = require('cors');
 
-// const app = express();
-// const PORT = 5050;
-
-// // Middleware
-// app.use(cors());
-// app.use(express.json());
-
-// // Test route
-// app.get('/ping', (req, res) => {
-//   res.json({ message: '✅ Server is working and CORS is enabled!' });
-// });
-
-// // Start server
-// app.listen(PORT, () => {
-//   console.log(`🚀 Test server running at http://localhost:${PORT}`);
-// });
