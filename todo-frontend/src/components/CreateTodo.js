@@ -10,12 +10,12 @@ function CreateTodo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!title.trim()) {
       setError('Title is required');
       return;
     }
-  
+
     try {
       const response = await axios.post('http://localhost:5050/api/todos', {
         title,
@@ -28,9 +28,9 @@ function CreateTodo() {
       console.error('Error:', err.response ? err.response.data : err);
     }
   };
-  
+
   return (
-    <div className="flex justify-center items-center min-h-screen ">
+    <div className="flex justify-center pt-16 items-center min-h-screen px-4">
       <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-gray-800">Create New Todo</h2>
         {error && (
