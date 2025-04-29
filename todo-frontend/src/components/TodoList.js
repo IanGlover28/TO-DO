@@ -52,7 +52,7 @@ function TodoList() {
 
   return (
     <div className=" min-h-screen text-white py-8">
-      <h2 className="text-2xl font-bold mb-6">Tasks</h2>
+      <h2 className="text-2xl font-bold mb-6"></h2>
       {todos.length === 0 ? (
         <p className="text-gray-400 text-center py-8">No tasks yet. Create one!</p>
       ) : (
