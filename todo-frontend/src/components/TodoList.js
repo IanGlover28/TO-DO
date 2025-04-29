@@ -44,23 +44,23 @@ function TodoList() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center py-12">
+      <div className="bg-black text-white min-h-screen flex justify-center items-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
       </div>
     );
   }
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">My Todos</h2>
+    <div className=" min-h-screen text-white py-8">
+      <h2 className="text-2xl font-bold mb-6">Tasks</h2>
       {todos.length === 0 ? (
-        <p className="text-gray-600 text-center py-8">No todos yet. Create one!</p>
+        <p className="text-gray-400 text-center py-8">No tasks yet. Create one!</p>
       ) : (
         <ul className="space-y-4">
           {todos.map(todo => (
             <li 
               key={todo.id} 
-              className={`bg-white rounded-lg shadow p-4 ${todo.completed ? 'border-l-4 border-green-500' : 'border-l-4 border-yellow-500'}`}
+              className={`bg-gray-800 rounded-lg shadow p-4 ${todo.completed ? 'border-l-4 border-green-400' : 'border-l-4 border-yellow-400'}`}
             >
               <div className="flex items-start justify-between">
                 <div className="flex items-start space-x-3">
@@ -71,11 +71,11 @@ function TodoList() {
                     onChange={() => toggleComplete(todo)}
                   />
                   <div>
-                    <h3 className={`font-medium ${todo.completed ? 'line-through text-gray-500' : 'text-gray-900'}`}>
+                    <h3 className={`font-medium ${todo.completed ? 'line-through text-gray-400' : 'text-white'}`}>
                       {todo.title}
                     </h3>
                     {todo.description && (
-                      <p className={`mt-1 text-sm ${todo.completed ? 'text-gray-400' : 'text-gray-600'}`}>
+                      <p className={`mt-1 text-sm ${todo.completed ? 'text-gray-500' : 'text-gray-300'}`}>
                         {todo.description}
                       </p>
                     )}
@@ -84,13 +84,13 @@ function TodoList() {
                 <div className="flex items-center space-x-2">
                   <Link 
                     to={`/edit/${todo.id}`} 
-                    className="px-3 py-1.5 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors"
+                    className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors"
                   >
                     Edit
                   </Link>
                   <button 
                     onClick={() => deleteTodo(todo.id)} 
-                    className="px-3 py-1.5 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors"
+                    className="px-3 py-1.5 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition-colors"
                   >
                     Delete
                   </button>
