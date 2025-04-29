@@ -5,6 +5,25 @@ exports.getTodos = async (req, res) => {
   res.json(todos);
 };
 
+exports.getTodoById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const todo = await prisma.todo.findUnique({
+      where: { id: Number(id) },
+    });
+
+    if (!todo) {
+      return res.status(404).json({ error: 'Todo not found' });
+    }
+
+    res.json(todo);
+  } catch (err) {
+    console.error('Error fetching todo:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 exports.createTodo = async (req, res) => {
   const { title } = req.body;
   if (!title) return res.status(400).json({ error: 'Title is required' });

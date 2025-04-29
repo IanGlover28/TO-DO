@@ -12,7 +12,7 @@ function TodoList() {
 
   const fetchTodos = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/todos');
+      const res = await axios.get('http://localhost:5050/api/todos');
       setTodos(res.data);
       setLoading(false);
     } catch (err) {
@@ -23,7 +23,7 @@ function TodoList() {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/todos/${id}`);
+      await axios.delete(`http://localhost:5050/api/todos/${id}`);
       fetchTodos();
     } catch (err) {
       console.error('Error deleting todo:', err);
@@ -32,7 +32,7 @@ function TodoList() {
 
   const toggleComplete = async (todo) => {
     try {
-      await axios.put(`http://localhost:5000/api/todos/${todo._id}`, {
+      await axios.put(`http://localhost:5050/api/todos/${todo.id}`, {
         ...todo,
         completed: !todo.completed
       });
@@ -59,7 +59,7 @@ function TodoList() {
         <ul className="space-y-4">
           {todos.map(todo => (
             <li 
-              key={todo._id} 
+              key={todo.id} 
               className={`bg-white rounded-lg shadow p-4 ${todo.completed ? 'border-l-4 border-green-500' : 'border-l-4 border-yellow-500'}`}
             >
               <div className="flex items-start justify-between">
@@ -83,13 +83,13 @@ function TodoList() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Link 
-                    to={`/edit/${todo._id}`} 
+                    to={`/edit/${todo.id}`} 
                     className="px-3 py-1.5 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors"
                   >
                     Edit
                   </Link>
                   <button 
-                    onClick={() => deleteTodo(todo._id)} 
+                    onClick={() => deleteTodo(todo.id)} 
                     className="px-3 py-1.5 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors"
                   >
                     Delete

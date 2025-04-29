@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+// import { toast } from 'react-toastify'; // Uncomment if using react-toastify
 
 function EditTodo() {
   const [title, setTitle] = useState('');
@@ -13,18 +14,30 @@ function EditTodo() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!id) {
+      setError('Invalid Todo ID');
+      setLoading(false);
+      return;
+    }
+
     const fetchTodo = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/todos/${id}`);
+        const res = await axios.get(`http://localhost:5050/api/todos/${id}`);
+        console.log('Fetched Todo:', res.data);
+
         const { title, description, completed } = res.data;
         setTitle(title);
         setDescription(description || '');
         setCompleted(completed);
         setLoading(false);
       } catch (err) {
-        setError('Error fetching todo');
+        if (err.response && err.response.status === 404) {
+          setError('Todo not found');
+        } else {
+          setError('Error fetching todo');
+        }
         setLoading(false);
-        console.error(err);
+        console.error('Error fetching todo:', err);
       }
     };
 
@@ -33,22 +46,24 @@ function EditTodo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!title.trim()) {
       setError('Title is required');
       return;
     }
 
     try {
-      await axios.put(`http://localhost:5000/api/todos/${id}`, {
+      await axios.put(`http://localhost:5050/api/todos/${id}`, {
         title,
         description,
         completed
       });
+
+      // toast.success('Todo updated successfully'); // Uncomment if using toast
       navigate('/');
     } catch (err) {
       setError('Error updating todo');
-      console.error(err);
+      console.error('Error updating todo:', err);
     }
   };
 
@@ -61,7 +76,7 @@ function EditTodo() {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="bg-white rounded-lg shadow-md p-6 max-w-xl mx-auto">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">Edit Todo</h2>
       {error && (
         <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
@@ -106,7 +121,12 @@ function EditTodo() {
         </div>
         <button 
           type="submit" 
-          className="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded hover:bg-indigo-700 transition-colors"
+          disabled={!title.trim()}
+          className={`w-full font-bold py-2 px-4 rounded transition-colors ${
+            title.trim() 
+              ? 'bg-indigo-600 text-white hover:bg-indigo-700' 
+              : 'bg-gray-400 text-white cursor-not-allowed'
+          }`}
         >
           Update Todo
         </button>
