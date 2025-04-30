@@ -8,6 +8,9 @@ function CreateTodo() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // Replace this with your Render backend URL
+  const apiUrl = 'https://to-do-3jr6.onrender.com/api/todos';
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -17,7 +20,7 @@ function CreateTodo() {
     }
 
     try {
-      const response = await axios.post('http://localhost:5050/api/todos', {
+      const response = await axios.post(apiUrl, {
         title,
         description
       });

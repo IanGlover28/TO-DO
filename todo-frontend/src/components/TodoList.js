@@ -6,13 +6,16 @@ function TodoList() {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Replace this with your Render backend URL
+  const apiUrl = 'https://to-do-3jr6.onrender.com/api/todos';
+
   useEffect(() => {
     fetchTodos();
   }, []);
 
   const fetchTodos = async () => {
     try {
-      const res = await axios.get('http://localhost:5050/api/todos');
+      const res = await axios.get(apiUrl);
       setTodos(res.data);
       setLoading(false);
     } catch (err) {
@@ -23,7 +26,7 @@ function TodoList() {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`http://localhost:5050/api/todos/${id}`);
+      await axios.delete(`${apiUrl}/${id}`);
       fetchTodos();
     } catch (err) {
       console.error('Error deleting todo:', err);
@@ -32,7 +35,7 @@ function TodoList() {
 
   const toggleComplete = async (todo) => {
     try {
-      await axios.put(`http://localhost:5050/api/todos/${todo.id}`, {
+      await axios.put(`${apiUrl}/${todo.id}`, {
         ...todo,
         completed: !todo.completed
       });
@@ -51,7 +54,7 @@ function TodoList() {
   }
 
   return (
-    <div className=" min-h-screen text-white py-8">
+    <div className="min-h-screen text-white py-8">
       <h2 className="text-2xl font-bold mb-6"></h2>
       {todos.length === 0 ? (
         <p className="text-gray-400 text-center py-8">No tasks yet. Create one!</p>

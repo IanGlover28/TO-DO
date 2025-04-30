@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
 function EditTodo() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -22,7 +21,8 @@ function EditTodo() {
 
     const fetchTodo = async () => {
       try {
-        const res = await axios.get(`http://localhost:5050/api/todos/${id}`);
+        // Replace this with your Render API URL
+        const res = await axios.get(`https://to-do-3jr6.onrender.com/api/todos/${id}`);
         console.log('Fetched Todo:', res.data);
 
         const { title, description, completed } = res.data;
@@ -53,13 +53,13 @@ function EditTodo() {
     }
 
     try {
-      await axios.put(`http://localhost:5050/api/todos/${id}`, {
+      // Replace this with your Render API URL
+      await axios.put(`https://to-do-3jr6.onrender.com/api/todos/${id}`, {
         title,
         description,
         completed
       });
 
-    
       navigate('/');
     } catch (err) {
       setError('Error updating todo');
