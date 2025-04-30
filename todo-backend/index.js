@@ -14,7 +14,8 @@ const PORT = process.env.PORT || 5050;
 app.use(cors({
   origin: [
     // 'http://localhost:3000',
-    'https://to-do-4gvu.vercel.app', // replace with your actual Vercel frontend domain
+   'https://to-do-tan-alpha.vercel.app',
+    // 'https://to-do-4gvu.vercel.app', // replace with your actual Vercel frontend domain
   ], 
   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
   credentials: true, 
