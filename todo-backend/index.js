@@ -23,8 +23,8 @@ app.use(cors({
 // Middleware to parse JSON
 app.use(express.json());
 
-app.get('/ping', (req, res) => {
-  res.json({ message: '✅ Server is working and CORS is enabled!' });
+app.get('/', (req, res) => {
+  res.send('API is live ✅');
 });
 
 
