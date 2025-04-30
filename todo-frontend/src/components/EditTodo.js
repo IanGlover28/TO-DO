@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-// import { toast } from 'react-toastify'; // Uncomment if using react-toastify
+
 
 function EditTodo() {
   const [title, setTitle] = useState('');
@@ -59,7 +59,7 @@ function EditTodo() {
         completed
       });
 
-      // toast.success('Todo updated successfully'); // Uncomment if using toast
+    
       navigate('/');
     } catch (err) {
       setError('Error updating todo');

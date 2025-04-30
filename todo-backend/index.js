@@ -12,7 +12,9 @@ const PORT = process.env.PORT || 5050;
 // CORS Middleware configuration
 
 app.use(cors({
-  origin: 'http://localhost:3000', 
+  origin: [
+    'https://to-do-tan-alpha.vercel.app', // replace with your actual Vercel frontend domain
+  ], 
   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
   credentials: true, 
 }));
