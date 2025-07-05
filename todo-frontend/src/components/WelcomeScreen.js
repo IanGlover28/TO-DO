@@ -9,9 +9,9 @@ function WelcomeScreen() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">Welcome to Todo App</h1>
+        <h1 className="text-4xl md:text-6xl font-bold mb-6">Your CRUD App</h1>
         <Link
-          to="/"
+          to="/todos"
           className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition duration-300"
         >
           Get Started
